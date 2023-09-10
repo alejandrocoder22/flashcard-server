@@ -1,5 +1,5 @@
 CREATE TABLE user (
-    userd_id SERIAl,
+    userd_id INT AUTO_INCREMENT,
     username VARCHAR(15) NOT NULL unique,
     password VARCHAR(100) NOT NULL,
     email VARCHAR(45) NOT NULL unique,
@@ -8,5 +8,8 @@ CREATE TABLE user (
 );
 
 CREATE TABLE card (
-    cardId SERIAL,
-)
+    card_id INT AUTO_INCREMENT,
+    user_id INT,
+    FOREIGN KEY(user_id) REFERENCES user(user_id),
+    PRIMARY KEY(card_id)
+);
