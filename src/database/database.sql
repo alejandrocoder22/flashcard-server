@@ -11,7 +11,10 @@ CREATE TABLE users (
 
 CREATE TABLE cards (
     card_id SERIAL PRIMARY KEY,
+    topic VARCHAR(50) NOT NULL,
+    question VARCHAR(250) NOT NULL,
+    answer VARCHAR(500) NOT NULL,
     user_id INT,
-    FOREIGN KEY(user_id) 
-	  REFERENCES users(user_id)
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
