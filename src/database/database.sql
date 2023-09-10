@@ -1,15 +1,17 @@
-CREATE TABLE user (
-    userd_id INT AUTO_INCREMENT,
+DROP TABLE IF EXISTS cards;
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
     username VARCHAR(15) NOT NULL unique,
     password VARCHAR(100) NOT NULL,
     email VARCHAR(45) NOT NULL unique,
     created_on TIMESTAMP NOT NULL DEFAULT now()
-    PRIMARY KEY(user_id)
 );
 
-CREATE TABLE card (
-    card_id INT AUTO_INCREMENT,
+CREATE TABLE cards (
+    card_id SERIAL PRIMARY KEY,
     user_id INT,
-    FOREIGN KEY(user_id) REFERENCES user(user_id),
-    PRIMARY KEY(card_id)
+    FOREIGN KEY(user_id) 
+	  REFERENCES users(user_id)
 );
