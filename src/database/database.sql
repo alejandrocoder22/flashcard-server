@@ -15,6 +15,7 @@ CREATE TABLE cards (
     question VARCHAR(250) NOT NULL,
     answer VARCHAR(500) NOT NULL,
     user_id INT,
+    is_public BOOLEAN DEFAULT false,
     created_at TIMESTAMP NOT NULL DEFAULT now(),
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
