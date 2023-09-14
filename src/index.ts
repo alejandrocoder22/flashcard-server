@@ -1,6 +1,7 @@
 import express from 'express'
 import usersRouter from './router/usersRouter'
 import cardRouter from './router/cardsRouter'
+import 'dotenv/config'
 
 const app = express()
 
