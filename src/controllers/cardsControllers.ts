@@ -1,5 +1,7 @@
 import * as cardsServices from '../services/cardsServices'
 import express from 'express'
+
+// @/api/cards
 export const getAllPublicCardsController: any = async (_req: any, res: express.Response) => {
   console.log('hgi')
   try {

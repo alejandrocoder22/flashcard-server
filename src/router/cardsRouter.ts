@@ -3,6 +3,8 @@ import { createCardController, getAllPublicCardsController } from '../controller
 
 const router = Router()
 
+// @/api/users
+
 router.get('/', getAllPublicCardsController)
 router.post('/', createCardController)
 
