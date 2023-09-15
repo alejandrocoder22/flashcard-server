@@ -1,8 +1,9 @@
 import { Router } from 'express'
-import * as cardsControllers from '../controllers/cardsControllers'
+import { createCardController, getAllPublicCardsController } from '../controllers/cardsControllers'
 
 const router = Router()
 
-router.get('/', cardsControllers.getAllPublicCardsController)
+router.get('/', getAllPublicCardsController)
+router.post('/', createCardController)
 
 export default router
