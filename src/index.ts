@@ -11,5 +11,5 @@ app.use('/api/users', usersRouter)
 app.use('/api/cards', cardRouter)
 
 app.listen(process.env.PORT, () => {
-  console.log(`Listening on port ${process.env.PORT}`)
+  console.log(`Listening on port ${Number(process.env.PORT)}`)
 })
