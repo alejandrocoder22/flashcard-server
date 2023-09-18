@@ -29,3 +29,8 @@ export const createCardController = async (_req: any, res: express.Response) => 
     res.status(400).send({ message: 'Something went wrong', error })
   }
 }
+
+
+export const deleteCardController = async (_req,res: express.Response) => {
+  res.send('Deleted Card')
+}
