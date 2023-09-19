@@ -3,7 +3,7 @@ import { createCardController, deleteCardController, getAllPublicCardsController
 
 const router = Router()
 
-// @/api/users
+// @/api/cards
 
 router.get('/', getAllPublicCardsController)
 router.get('/cardsUser', getCardsByIdController)
