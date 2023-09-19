@@ -9,6 +9,6 @@ router.get('/', getAllPublicCardsController)
 router.get('/cardsUser', getCardsByIdController)
 router.post('/', createCardController)
 router.delete('/', deleteCardController)
-router.update('/', updateCardController)
+router.put('/', updateCardController)
 
 export default router
