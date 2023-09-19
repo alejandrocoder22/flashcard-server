@@ -7,3 +7,11 @@ export const createUser: any = async (_req: any, res: express.Response) => {
 
   res.status(200).send(cards)
 }
+
+export const loginUser = (_req: express.Request, res: express.Response) => {
+  res.send('User Logged in')
+}
+
+export const verifyUser = (_req: express.Request, res: express.Response) => {
+  res.send('User Logged in')
+}
