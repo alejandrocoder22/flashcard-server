@@ -13,5 +13,5 @@ export const loginUser = (_req: express.Request, res: express.Response) => {
 }
 
 export const verifyUser = (_req: express.Request, res: express.Response) => {
-  res.send('User Logged in')
+  res.send('User verified')
 }
