@@ -31,10 +31,10 @@ export const createCardController = async (_req: any, res: express.Response) => 
 }
 
 
-export const deleteCardController = async (_req,res: express.Response) => {
+export const deleteCardController = async (_req: express.Request,res: express.Response) => {
   res.send('Deleted Card')
 }
 
-export const updateCardController = async (_req,res: express.Response) => {
+export const updateCardController = async (_req: express.Request,res: express.Response) => {
   res.send('Update Card')
 }
