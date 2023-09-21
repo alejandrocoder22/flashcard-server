@@ -3,9 +3,9 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
-    username VARCHAR(15) NOT NULL unique,
-    password VARCHAR(100) NOT NULL,
-    email VARCHAR(45) NOT NULL unique,
+    username VARCHAR(50) NOT NULL unique,
+    password VARCHAR(250) NOT NULL,
+    email VARCHAR(125) NOT NULL unique,
     created_on TIMESTAMP NOT NULL DEFAULT now()
 );
 
