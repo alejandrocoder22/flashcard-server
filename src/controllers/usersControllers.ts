@@ -1,7 +1,7 @@
 
 import express from 'express'
 import { userExist, createUserService } from '../services/usersServices'
-import { checkPassword, hashPassword } from '../utils/crypto'
+import { checkPassword, generateToken, hashPassword } from '../utils/crypto'
 
 export const createUser: any = async (req: express.Request, res: express.Response) => {
   const { username, email, password } = req.body
@@ -27,7 +27,8 @@ export const loginUser = async (req: express.Request, res: express.Response) => 
 
     const isPasswordRight = await checkPassword(password, user[0].password)
     if (!isPasswordRight) return res.status(400).send({ message: 'Invalid username or password ' })
-    res.status(200).send({ message: 'User is logged in' })
+    const token = await generateToken(user[0].user_id, user[0].username)
+    res.status(200).send({ message: 'User is logged in', token })
   } catch (error) {
     res.status(400).send({ message: 'Invalid username or password', error })
   }
