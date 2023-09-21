@@ -1,7 +1,7 @@
 
 import express from 'express'
 import { userExist, createUserService } from '../services/usersServices'
-import { hashPassword } from '../utils/crypto'
+import { checkPassword, hashPassword } from '../utils/crypto'
 
 export const createUser: any = async (req: express.Request, res: express.Response) => {
   const { username, email, password } = req.body
@@ -18,8 +18,19 @@ export const createUser: any = async (req: express.Request, res: express.Respons
   }
 }
 
-export const loginUser = (_req: express.Request, res: express.Response) => {
-  res.send('User Logged in')
+export const loginUser = async (req: express.Request, res: express.Response) => {
+  const { username, email, password } = req.body
+  try {
+    const user: any = await userExist(username, email)
+
+    if (user.length === 0) return res.status(400).send({ message: 'Invalid username or password' })
+
+    const isPasswordRight = await checkPassword(password, user[0].password)
+    if (!isPasswordRight) return res.status(400).send({ message: 'Invalid username or password ' })
+    res.status(200).send({ message: 'User is logged in' })
+  } catch (error) {
+    res.status(400).send({ message: 'Invalid username or password', error })
+  }
 }
 
 export const verifyUser = (_req: express.Request, res: express.Response) => {
