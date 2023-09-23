@@ -22,6 +22,16 @@ export const getCardsByIdController: any = async (req: express.Request, res: exp
 }
 
 export const createCardController = async (_req: any, res: express.Response) => {
+  const { topic, question, answer, is_public } = req.body
+  // Get userId from cookies
+
+  const cardData = {
+    topic,
+    question,
+    answer,
+    user_id,
+    is_public
+  }
   try {
     await cardsServices.createCard()
     res.status(200).send({ message: 'Card created' })
