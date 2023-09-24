@@ -2,7 +2,7 @@ import * as cardsServices from '../services/cardsServices'
 import express from 'express'
 
 // @/api/cards
-export const getAllPublicCardsController: any = async (_req: any, res: express.Response) => {
+export const getAllPublicCardsController = async (_req: any, res: express.Response): Promise<void> => {
   try {
     const publicCards = await cardsServices.getAllPublicCards()
     res.status(200).send(publicCards.rows)
@@ -11,7 +11,7 @@ export const getAllPublicCardsController: any = async (_req: any, res: express.R
   }
 }
 
-export const getCardsByIdController: any = async (req: express.Request, res: express.Response) => {
+export const getCardsByIdController = async (req: express.Request, res: express.Response): Promise<void>=> {
   const { userId } = req.body // Change after to get id from Cookies
   try {
     const cardsById = await cardsServices.getCardsById(userId)
@@ -21,7 +21,7 @@ export const getCardsByIdController: any = async (req: express.Request, res: exp
   }
 }
 
-export const createCardController = async (req: any, res: express.Response) => {
+export const createCardController = async (req: any, res: express.Response): Promise<void> => {
   const { topic, question, answer, isPublic } = req.body
 
   const cardData = {
@@ -39,10 +39,10 @@ export const createCardController = async (req: any, res: express.Response) => {
   }
 }
 
-export const deleteCardController = async (_req: express.Request, res: express.Response) => {
+export const deleteCardController = async (_req: express.Request, res: express.Response): Promise<void> => {
   res.send('Deleted Card')
 }
 
-export const updateCardController = async (_req: express.Request, res: express.Response) => {
+export const updateCardController = async (_req: express.Request, res: express.Response): Promise<void> => {
   res.send('Update Card')
 }
