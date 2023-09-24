@@ -27,8 +27,8 @@ export const loginUser = async (req: express.Request, res: express.Response) => 
 
     const isPasswordRight = await checkPassword(password, user[0].password)
     if (!isPasswordRight) return res.status(400).send({ message: 'Invalid username or password ' })
-    const token = await generateToken(user[0].user_id, user[0].username)
-    res.status(200).send({ message: 'User is logged in', token })
+    await generateToken(user[0].user_id, user[0].username, res)
+    res.status(200).send({ message: 'User is logged in' })
   } catch (error) {
     res.status(400).send({ message: 'Invalid Username or Password', error })
   }
