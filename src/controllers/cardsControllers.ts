@@ -23,13 +23,12 @@ export const getCardsByIdController: any = async (req: express.Request, res: exp
 
 export const createCardController = async (req: any, res: express.Response) => {
   const { topic, question, answer, isPublic } = req.body
-  // Get userId from cookies
-  const userId = 1
+
   const cardData = {
     topic,
     question,
     answer,
-    user_id: userId,
+    user_id: req.user.user_id,
     is_public: isPublic
   }
   try {
