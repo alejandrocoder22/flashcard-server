@@ -20,6 +20,7 @@ export const createUser: any = async (req: express.Request, res: express.Respons
 
 export const loginUser = async (req: express.Request, res: express.Response) => {
   const { username, email, password } = req.body
+
   try {
     const user: any = await userExist(username, email)
 
