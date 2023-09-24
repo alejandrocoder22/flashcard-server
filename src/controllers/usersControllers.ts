@@ -3,7 +3,7 @@ import express from 'express'
 import { userExist, createUserService } from '../services/usersServices'
 import { checkPassword, generateToken, hashPassword } from '../utils/crypto'
 
-export const createUser: any = async (req: express.Request, res: express.Response) => {
+export const createUser = async (req: express.Request, res: express.Response): Promise<void> => {
   const { username, email, password } = req.body
   try {
     const user = await userExist(username, email)
@@ -18,7 +18,7 @@ export const createUser: any = async (req: express.Request, res: express.Respons
   }
 }
 
-export const loginUser = async (req: express.Request, res: express.Response) => {
+export const loginUser: any = async (req: express.Request, res: express.Response) => {
   const { username, email, password } = req.body
 
   try {
@@ -35,6 +35,6 @@ export const loginUser = async (req: express.Request, res: express.Response) => 
   }
 }
 
-export const verifyUser = (_req: express.Request, res: express.Response) => {
+export const verifyUser = (_req: express.Request, res: express.Response): void => {
   res.send('User verified')
 }
