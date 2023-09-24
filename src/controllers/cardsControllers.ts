@@ -28,7 +28,7 @@ export const createCardController = async (req: any, res: express.Response) => {
     topic,
     question,
     answer,
-    user_id: req.user.user_id,
+    user_id: req.user.userId,
     is_public: isPublic
   }
   try {
