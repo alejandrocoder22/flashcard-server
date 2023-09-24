@@ -12,7 +12,7 @@ export const checkPassword = async (plainPassword: string, hashedPassword: strin
   return isPasswordRight
 }
 
-export const generateToken = async (userId: number, username: string, res: express.Resposne) => {
+export const generateToken = async (userId: number, username: string, res: express.Response) => {
   const userData = { userId, username }
 
   const token = await jwt.sign(userData, String(process.env.JWT_PASSWORD))
