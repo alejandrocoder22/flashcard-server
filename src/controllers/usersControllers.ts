@@ -3,7 +3,7 @@ import express from 'express'
 import { userExist, createUserService } from '../services/usersServices'
 import { checkPassword, generateToken, hashPassword } from '../utils/crypto'
 
-export const createUser = async (req: express.Request, res: express.Response): Promise<void> => {
+export const createUser = async (req: express.Request, res: express.Response) => {
   const { username, email, password } = req.body
   try {
     const user = await userExist(username, email)

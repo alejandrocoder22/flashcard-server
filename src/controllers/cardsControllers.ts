@@ -11,7 +11,7 @@ export const getAllPublicCardsController = async (_req: any, res: express.Respon
   }
 }
 
-export const getCardsByIdController = async (req: express.Request, res: express.Response): Promise<void>=> {
+export const getCardsByIdController = async (req: express.Request, res: express.Response): Promise<void> => {
   const { userId } = req.body // Change after to get id from Cookies
   try {
     const cardsById = await cardsServices.getCardsById(userId)
