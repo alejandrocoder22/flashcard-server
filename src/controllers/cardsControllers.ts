@@ -33,7 +33,7 @@ export const createCardController = async (_req: any, res: express.Response) => 
     is_public
   }
   try {
-    await cardsServices.createCard()
+    await cardsServices.createCard(cardData)
     res.status(200).send({ message: 'Card created' })
   } catch (error) {
     res.status(400).send({ message: 'Something went wrong', error })
