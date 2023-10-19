@@ -10,5 +10,5 @@ export const createUserService = async (username: string, email: string, hashedP
 }
 
 export const deleteUserService = async (userId: number) => {
-  return await pool.query('DELETE FROM users WHERE user_id = $1', [userId])
+  return await pool.query('DELETE FROM users WHERE user_id=$1', [userId])
 }
