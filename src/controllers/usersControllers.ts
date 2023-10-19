@@ -35,7 +35,7 @@ export const loginUser: any = async (req: express.Request, res: express.Response
   }
 }
 
-export const deleteUSer: any = async (req: express.Request, res: express.Response) => {
+export const deleteUser: any = async (req: express.Request, res: express.Response) => {
   const { userId } = req.cookies
 
   try {
