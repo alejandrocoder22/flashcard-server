@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { createUser, loginUser, verifyUser, deleteUser } from '../controllers/usersControllers'
+import { validateUser } from '../middlewares/validateUser'
 
 const router = Router()
 
@@ -8,6 +9,6 @@ const router = Router()
 router.post('/register', createUser)
 router.post('/login', loginUser)
 router.get('/verify', verifyUser)
-router.delete('/', deleteUser)
+router.delete('/', validateUser, deleteUser)
 
 export default router
