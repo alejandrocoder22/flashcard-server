@@ -35,12 +35,10 @@ export const loginUser: any = async (req: express.Request, res: express.Response
   }
 }
 
-export const deleteUser: any = async (req: express.Request, res: express.Response) => {
-  const { userId } = req.cookies
-
+export const deleteUser: any = async (req: any, res: express.Response) => {
   try {
-    if (userId.length > 0) {
-      await deleteUserService(userId)
+    if (req.user.userId) {
+      await deleteUserService(req.user.userId)
       res.status(200).send({ message: 'User deleted' })
     }
   } catch (error) {

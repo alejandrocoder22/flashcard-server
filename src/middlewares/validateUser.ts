@@ -10,7 +10,6 @@ export const validateUser = (req: any, res: express.Response, next: express.Next
     /* @ts-expect-error */
     const tokenDecoded = jwt.decode(token, secret)
     if (tokenDecoded === null) return res.status(400).send({ message: 'User must be logged in' })
-
     req.user = tokenDecoded
 
     next()
