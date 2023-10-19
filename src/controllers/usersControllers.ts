@@ -1,6 +1,6 @@
 
 import express from 'express'
-import { userExist, createUserService } from '../services/usersServices'
+import { userExist, createUserService, deleteUserService } from '../services/usersServices'
 import { checkPassword, generateToken, hashPassword } from '../utils/crypto'
 
 export const createUser = async (req: express.Request, res: express.Response) => {
@@ -32,6 +32,19 @@ export const loginUser: any = async (req: express.Request, res: express.Response
     res.status(200).send({ message: 'User is logged in' })
   } catch (error) {
     res.status(400).send({ message: 'Invalid Username or Password', error })
+  }
+}
+
+export const deleteUSer: any = async (req: express.Request, res: express.Response) => {
+  const { userId } = req.cookies
+
+  try {
+    if (userId.length > 0) {
+      await deleteUserService(userId)
+      res.status(200).send({ message: 'User deleted' })
+    }
+  } catch (error) {
+    res.status(404).send({ message: 'Error deleting user' })
   }
 }
 
