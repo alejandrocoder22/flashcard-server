@@ -11,10 +11,9 @@ export const getAllPublicCardsController = async (_req: any, res: express.Respon
   }
 }
 
-export const getCardsByIdController = async (req: express.Request, res: express.Response): Promise<void> => {
-  const { userId } = req.body // Change after to get id from Cookies
+export const getCardsByIdController = async (req: any, res: express.Response): Promise<void> => {
   try {
-    const cardsById = await cardsServices.getCardsById(userId)
+    const cardsById = await cardsServices.getCardsById(req.user.userId)
     res.status(200).send(cardsById.rows)
   } catch (error) {
     res.status(400).send({ message: 'Something went wrong', error })
