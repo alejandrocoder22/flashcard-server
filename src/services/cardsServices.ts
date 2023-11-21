@@ -24,5 +24,9 @@ export const updateCard = async (cardId: number, userId: number, cardInfo: any):
     answer,
     is_public
   } = cardInfo
-  return await pool.query('UPDATE CARDS SET topic = $1, question = $2, answer = $3, is_public = $4 WHERE user_id = $5 AND card_id = $6', [topic, question, answer, is_public, userId, cardId])
+  try {
+    return await pool.query('UPDATE cards SET topic = $1, question = $2, answer = $3, is_public = $4 WHERE  card_id = $5 AND user_id = $6 ', [topic, question, answer, is_public, cardId, userId])
+  } catch (error) {
+    return error
+  }
 }
