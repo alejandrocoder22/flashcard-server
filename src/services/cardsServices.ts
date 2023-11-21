@@ -16,3 +16,13 @@ export const createCard = async (cardData: flashCard): Promise<any> => {
 export const deleteCard = async (userId: number, cardId: number): Promise<any> => {
   return await pool.query('DELETE FROM cards WHERE card_id = $1 AND user_id = $2', [cardId, userId])
 }
+
+export const updateCard = async (cardId: number, userId: number, cardInfo: any): Promise<any> => {
+  const {
+    topic,
+    question,
+    answer,
+    is_public
+  } = cardInfo
+  return await pool.query('UPDATE CARDS SET topic = $1, question = $2, answer = $3, is_public = $4 WHERE user_id = $5 AND card_id = $6', [topic, question, answer, is_public, userId, cardId])
+}
