@@ -38,8 +38,14 @@ export const createCardController = async (req: any, res: express.Response): Pro
   }
 }
 
-export const deleteCardController = async (_req: express.Request, res: express.Response): Promise<void> => {
-  res.send('Deleted Card')
+export const deleteCardController = async (req: any, res: express.Response): Promise<any> => {
+  const { cardId } = req.body
+  try {
+    await cardsServices.deleteCard(req.user.userId, cardId)
+    return res.status(200).send({ message: 'Card deleted' })
+  } catch (error) {
+    return res.status(400).send({ message: 'Something went wrong' })
+  }
 }
 
 export const updateCardController = async (_req: express.Request, res: express.Response): Promise<void> => {
