@@ -1,7 +1,14 @@
 import * as cardsServices from '../services/cardsServices'
 import express from 'express'
+import { getDeckById } from '../services/decksServices'
 
 // @/api/cards
+
+// POST new Card
+// Update Card
+// Delete Card
+//
+
 export const getAllPublicCardsController = async (_req: any, res: express.Response): Promise<void> => {
   try {
     const publicCards = await cardsServices.getAllPublicCards()
@@ -21,17 +28,15 @@ export const getCardsByIdController = async (req: any, res: express.Response): P
 }
 
 export const createCardController = async (req: any, res: express.Response): Promise<void> => {
-  const { topic, question, answer, isPublic } = req.body
+  const { question, answer, deckId } = req.body
 
-  const cardData = {
-    topic,
-    question,
-    answer,
-    user_id: req.user.userId,
-    is_public: isPublic
-  }
   try {
-    await cardsServices.createCard(cardData)
+    const deck = await getDeckById(deckId)
+
+    if (deck.rows.length === 0) res.status(400).send({ message: 'You must provide a deck id' })
+    if (deck.rows[0].user_id !== req.user.userId) res.status(400).send({ message: 'You can only add cards to your own deck' })
+
+    await cardsServices.createCard(question, answer, deckId)
     res.status(200).send({ message: 'Card created' })
   } catch (error) {
     res.status(400).send({ message: 'Something went wrong', error })
