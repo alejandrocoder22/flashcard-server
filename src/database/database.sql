@@ -1,5 +1,6 @@
-DROP TABLE IF EXISTS cards;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS cards;
+DROP TABLE IF EXISTS decks;
 
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
@@ -25,5 +26,5 @@ CREATE TABLE cards (
     answer VARCHAR(500) NOT NULL,
     deck_id INT,
     created_at TIMESTAMP NOT NULL DEFAULT now(),
-    FOREIGN KEY(deck_id) REFERENCES decks(deck_id)
+    FOREIGN KEY(deck_id) REFERENCES decks(deck_id) ON DELETE CASCADE
 );
