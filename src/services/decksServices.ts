@@ -23,6 +23,15 @@ LIMIT 10`, [topic]
   )
 }
 
+export const getPublicDecksByUserId = async (userId: number, pagination: number): Promise<any> => {
+  return await pool.query(`
+SELECT * FROM decks 
+WHERE user_id = $1
+OFFSET ${getPagination(pagination)}
+LIMIT 10`, [userId]
+  )
+}
+
 export const getDeckById = async (deckId: number) => {
   return await pool.query('SELECT user_id FROM decks WHERE deck_id=$1', [deckId])
 }
