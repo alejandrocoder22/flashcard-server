@@ -4,7 +4,7 @@
 // Delete Deck
 // Update Deck
 
-import { createDeckService } from '../services/decksServices'
+import { createDeckService, getPublicDecksByTopicService } from '../services/decksServices'
 
 export const createDeck = async (req: any, res: any) => {
   const { topic, deckName, isPublic } = req.body
@@ -14,5 +14,17 @@ export const createDeck = async (req: any, res: any) => {
     res.status(200).send({ message: 'Deck created' })
   } catch (error) {
     res.status(400).send({ message: 'Something went wrong', error })
+  }
+}
+
+export const getPublicDecksByTopic = async (req: any, res: any) => {
+  const pagination = req.query.pagination
+  const topic = req.query.topic
+
+  try {
+    const decks = await getPublicDecksByTopicService(pagination, topic)
+    res.status(200).send({ decks: decks.rows })
+  } catch (error) {
+    res.status(400).send({ error })
   }
 }
