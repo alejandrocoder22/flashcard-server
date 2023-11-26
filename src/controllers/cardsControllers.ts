@@ -5,8 +5,8 @@ import { getDeckById } from '../services/decksServices'
 // @/api/cards
 
 // POST new Card x
+// Delete Card x
 // Update Card
-// Delete Card
 //
 
 export const createCardController = async (req: any, res: express.Response): Promise<any> => {
@@ -20,15 +20,6 @@ export const createCardController = async (req: any, res: express.Response): Pro
 
     await cardsServices.createCard(question, answer, deckId, req.user.userId)
     res.status(200).send({ message: 'Card created' })
-  } catch (error) {
-    res.status(400).send({ message: 'Something went wrong', error })
-  }
-}
-
-export const getAllPublicCardsController = async (_req: any, res: express.Response): Promise<void> => {
-  try {
-    const publicCards = await cardsServices.getAllPublicCards()
-    res.status(200).send(publicCards.rows)
   } catch (error) {
     res.status(400).send({ message: 'Something went wrong', error })
   }
@@ -54,17 +45,15 @@ export const deleteCardController = async (req: any, res: express.Response): Pro
 }
 
 export const updateCardController = async (req: any, res: express.Response): Promise<any> => {
-  const { cardId } = req.body
+  const { cardId } = req.params
 
   const cardInfo = {
-    topic: req.body.topic,
     question: req.body.question,
-    answer: req.body.answer,
-    is_public: req.body.is_public
+    answer: req.body.answer
   }
 
   try {
-    const response = await cardsServices.updateCard(cardId, req.user.userId, cardInfo)
+    await cardsServices.updateCard(cardId, req.user.userId, cardInfo)
     return res.status(200).send({ message: 'Card updated' })
   } catch (error) {
     return res.status(400).send({ message: 'Something went wrong' })
