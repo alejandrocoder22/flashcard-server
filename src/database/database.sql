@@ -26,5 +26,7 @@ CREATE TABLE cards (
     answer VARCHAR(500) NOT NULL,
     deck_id INT,
     created_at TIMESTAMP NOT NULL DEFAULT now(),
+    user_id INT,
+    FOREIGN KEY(user_id) REFERENCES USERS(user_id),
     FOREIGN KEY(deck_id) REFERENCES decks(deck_id) ON DELETE CASCADE
 );
