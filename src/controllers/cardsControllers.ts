@@ -4,11 +4,6 @@ import { getDeckById } from '../services/decksServices'
 
 // @/api/cards
 
-// POST new Card x
-// Delete Card x
-// Update Card
-//
-
 export const createCardController = async (req: any, res: express.Response): Promise<any> => {
   const { question, answer, deckId } = req.body
 

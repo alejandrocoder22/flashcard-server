@@ -31,6 +31,9 @@ LIMIT 10`, [userId]
   )
 }
 
+export const updateDeckService = async (topic: string, deckName: string, isPublic: boolean, deckId: number, userId: number) => {
+  return await pool.query('UPDATE decks SET topic = $1,deck_name = $2,is_public= $3 WHERE deck_id = $4 AND user_id = $5', [topic, deckName, isPublic, deckId, userId])
+}
 export const getDeckById = async (deckId: number) => {
   return await pool.query('SELECT user_id FROM decks WHERE deck_id=$1', [deckId])
 }

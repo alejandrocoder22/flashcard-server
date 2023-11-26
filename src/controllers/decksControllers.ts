@@ -1,10 +1,4 @@
-// Get decks by topic x
-// Get decks by userId x
-// Create Deck x
-// Delete Deck
-// Update Deck
-
-import { createDeckService, deleteDeckService, getDeckById, getPublicDecksByTopicService, getPublicDecksByUserId } from '../services/decksServices'
+import { createDeckService, deleteDeckService, getDeckById, getPublicDecksByTopicService, getPublicDecksByUserId, updateDeckService } from '../services/decksServices'
 
 export const createDeck = async (req: any, res: any): Promise<void> => {
   const { topic, deckName, isPublic } = req.body
@@ -49,6 +43,17 @@ export const deleteDeck = async (req: any, res: any): Promise<void> => {
 
     await deleteDeckService(deckId)
 
+    res.status(200).send({ message: 'Deck deleted' })
+  } catch (error) {
+    res.status(400).send({ error })
+  }
+}
+
+export const updateDeck = async (req: any, res: any): Promise<void> => {
+  const { deckId } = req.params
+  const { topic, deckName, isPublic } = req.body
+  try {
+    await updateDeckService(topic, deckName, isPublic, deckId, req.user.userId)
     res.status(200).send({ message: 'Deck deleted' })
   } catch (error) {
     res.status(400).send({ error })

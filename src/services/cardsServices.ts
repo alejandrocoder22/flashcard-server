@@ -18,7 +18,6 @@ export const deleteCard = async (userId: number, cardId: number): Promise<any> =
 
 export const updateCard = async (cardId: number, userId: number, cardInfo: any): Promise<any> => {
   const {
-    topic,
     question,
     answer
   } = cardInfo
