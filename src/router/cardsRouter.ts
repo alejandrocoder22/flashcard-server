@@ -9,7 +9,7 @@ const router = Router()
 router.get('/', getAllPublicCardsController)
 router.get('/cardsUser', validateUser, getCardsByIdController)
 router.post('/', validateUser, createCardController)
-router.delete('/', validateUser, deleteCardController)
+router.delete('/:cardId', validateUser, deleteCardController)
 router.put('/', validateUser, updateCardController)
 
 export default router

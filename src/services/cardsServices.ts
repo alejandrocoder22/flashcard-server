@@ -1,5 +1,4 @@
 import { pool } from '../database/database'
-import { flashCard } from '../types'
 
 export const getAllPublicCards = async (): Promise<any> => {
   return await pool.query('SELECT * FROM cards WHERE is_public = true')
@@ -9,8 +8,8 @@ export const getCardsById = async (userId: number): Promise<any> => {
   return await pool.query('SELECT * FROM cards WHERE user_id = $1', [userId])
 }
 
-export const createCard = async (question: string, answer: string, deckId: number): Promise<any> => {
-  return await pool.query('INSERT INTO cards (question, answer, deck_id) VALUES ($1, $2, $3)', [question, answer, deckId])
+export const createCard = async (question: string, answer: string, deckId: number, userId: number): Promise<any> => {
+  return await pool.query('INSERT INTO cards (question, answer, deck_id, user_id) VALUES ($1, $2, $3, $4)', [question, answer, deckId, userId])
 }
 
 export const deleteCard = async (userId: number, cardId: number): Promise<any> => {
