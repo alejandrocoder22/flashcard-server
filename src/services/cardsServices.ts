@@ -9,8 +9,8 @@ export const getCardsById = async (userId: number): Promise<any> => {
   return await pool.query('SELECT * FROM cards WHERE user_id = $1', [userId])
 }
 
-export const createCard = async (cardData: flashCard): Promise<any> => {
-  return await pool.query('INSERT INTO cards (topic, question, answer, user_id, is_public) VALUES ($1, $2, $3, $4, $5)', [cardData.topic, cardData.question, cardData.answer, cardData.user_id, cardData.is_public])
+export const createCard = async (question: string, answer: string, deckId: number): Promise<any> => {
+  return await pool.query('INSERT INTO cards (question, answer, deck_id) VALUES ($1, $2, $3)', [question, answer, deckId])
 }
 
 export const deleteCard = async (userId: number, cardId: number): Promise<any> => {
