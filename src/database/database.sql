@@ -17,7 +17,7 @@ CREATE TABLE decks (
     is_public BOOLEAN DEFAULT false,
     user_id INT,
     created_on TIMESTAMP NOT NULL DEFAULT now(),
-    FOREIGN KEY(user_id) REFERENCES USERS(user_id)
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE cards (
