@@ -27,14 +27,14 @@ export const getCardsByIdController = async (req: any, res: express.Response): P
   }
 }
 
-export const createCardController = async (req: any, res: express.Response): Promise<void> => {
+export const createCardController = async (req: any, res: express.Response): Promise<any> => {
   const { question, answer, deckId } = req.body
 
   try {
     const deck = await getDeckById(deckId)
 
-    if (deck.rows.length === 0) res.status(400).send({ message: 'You must provide a deck id' })
-    if (deck.rows[0].user_id !== req.user.userId) res.status(400).send({ message: 'You can only add cards to your own deck' })
+    if (deck.rows.length === 0) return res.status(400).send({ message: 'You must provide a deck id' })
+    if (deck.rows[0].user_id !== req.user.userId) return res.status(400).send({ message: 'You can only add cards to your own deck' })
 
     await cardsServices.createCard(question, answer, deckId)
     res.status(200).send({ message: 'Card created' })
