@@ -34,3 +34,7 @@ LIMIT 10`, [userId]
 export const getDeckById = async (deckId: number) => {
   return await pool.query('SELECT user_id FROM decks WHERE deck_id=$1', [deckId])
 }
+
+export const deleteDeckService = async (deckId) => {
+  return await pool.query('DELETE FROM decks WHERE deck_id = $1', [])
+}

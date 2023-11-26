@@ -1,6 +1,6 @@
 // Get decks by topic x
-// Get decks by userId
-// Create Deck
+// Get decks by userId x
+// Create Deck x
 // Delete Deck
 // Update Deck
 
@@ -31,6 +31,15 @@ export const getPublicDecksByTopic = async (req: any, res: any): Promise<void> =
 
 export const getDecksByUserId = async (req: any, res: any): Promise<void> => {
   const { pagination } = req.params
+  try {
+    const decks = await getPublicDecksByUserId(req.user.userId, pagination)
+    res.status(200).send({ decks: decks.rows })
+  } catch (error) {
+    res.status(400).send({ error })
+  }
+}
+
+export const deleteDeck = async (req: any, res: any): Promise<void> => {
   try {
     const decks = await getPublicDecksByUserId(req.user.userId, pagination)
     res.status(200).send({ decks: decks.rows })
