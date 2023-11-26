@@ -12,8 +12,7 @@ const getPagination = (page: number): number => {
   }
 }
 export const getPublicDecksByTopicService = async (pagination: number, topic: string): Promise<any> => {
-
-  console.log(topic, pagination);
+  console.log(topic, pagination)
   return await pool.query(`
 SELECT * FROM decks 
 WHERE is_public = true 

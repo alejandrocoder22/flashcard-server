@@ -1,12 +1,12 @@
 // Get decks by topic x
-// Get decks by userId 
+// Get decks by userId
 // Create Deck
 // Delete Deck
 // Update Deck
 
-import { createDeckService, getDeckById, getPublicDecksByTopicService, getPublicDecksByUserId } from '../services/decksServices'
+import { createDeckService, getPublicDecksByTopicService, getPublicDecksByUserId } from '../services/decksServices'
 
-export const createDeck = async (req: any, res: any) => {
+export const createDeck = async (req: any, res: any): Promise<void> => {
   const { topic, deckName, isPublic } = req.body
   const { userId } = req.user
   try {
@@ -17,7 +17,7 @@ export const createDeck = async (req: any, res: any) => {
   }
 }
 
-export const getPublicDecksByTopic = async (req: any, res: any) => {
+export const getPublicDecksByTopic = async (req: any, res: any): Promise<void> => {
   const pagination = req.query.pagination
   const topic = req.query.topic
 
@@ -29,7 +29,7 @@ export const getPublicDecksByTopic = async (req: any, res: any) => {
   }
 }
 
-export const getDecksByUserId = async (req: any, res: any) => {
+export const getDecksByUserId = async (req: any, res: any): Promise<void> => {
   const { pagination } = req.params
   try {
     const decks = await getPublicDecksByUserId(req.user.userId, pagination)
@@ -38,4 +38,3 @@ export const getDecksByUserId = async (req: any, res: any) => {
     res.status(400).send({ error })
   }
 }
-
