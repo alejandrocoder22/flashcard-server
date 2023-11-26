@@ -9,13 +9,21 @@ CREATE TABLE users (
     created_on TIMESTAMP NOT NULL DEFAULT now()
 );
 
+CREATE TABLE decks (
+    deck_id SERIAL PRIMARY KEY,
+    topic VARCHAR(50) NOT NULL,
+    deck_name VARCHAR(125),
+    is_public BOOLEAN DEFAULT false,
+    user_id INT,
+    created_on TIMESTAMP NOT NULL DEFAULT now(),
+    FOREIGN KEY(user_id) REFERENCES USERS(user_id)
+);
+
 CREATE TABLE cards (
     card_id SERIAL PRIMARY KEY,
-    topic VARCHAR(50) NOT NULL,
     question VARCHAR(250) NOT NULL,
     answer VARCHAR(500) NOT NULL,
-    user_id INT,
-    is_public BOOLEAN DEFAULT false,
+    deck_id INT,
     created_at TIMESTAMP NOT NULL DEFAULT now(),
-    FOREIGN KEY(user_id) REFERENCES users(user_id)
+    FOREIGN KEY(deck_id) REFERENCES decks(deck_id)
 );
