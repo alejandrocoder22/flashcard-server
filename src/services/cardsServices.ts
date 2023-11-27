@@ -22,7 +22,7 @@ export const updateCard = async (cardId: number, userId: number, cardInfo: any):
     answer
   } = cardInfo
   try {
-    return await pool.query('UPDATE cards SET question = $1, answer = $2 WHERE  card_id = $3 AND user_id = $4 ', [question, answer, cardId, userId])
+    return await pool.query('UPDATE cards SET question = $1, answer = $2 WHERE  card_id = $3 AND user_id = $4 RETURNING *', [question, answer, cardId, userId])
   } catch (error) {
     return error
   }
