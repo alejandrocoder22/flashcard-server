@@ -4,8 +4,10 @@ import usersRouter from './router/usersRouter'
 import cardRouter from './router/cardsRouter'
 import cookieParser from 'cookie-parser'
 import deckRouter from './router/decksRouter'
-const app = express()
+import cors from 'cors'
 
+const app = express()
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 

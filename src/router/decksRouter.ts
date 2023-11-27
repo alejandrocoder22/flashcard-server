@@ -6,7 +6,7 @@ const router = Router()
 
 // @/api/decks
 router.post('/', validateUser, createDeck)
-router.get('/', validateUser, getPublicDecksByTopic)
+router.get('/', getPublicDecksByTopic)
 router.get('/:pagination', validateUser, getDecksByUserId)
 router.delete('/:deckId', validateUser, deleteDeck)
 router.put('/:deckId', validateUser, updateDeck)
