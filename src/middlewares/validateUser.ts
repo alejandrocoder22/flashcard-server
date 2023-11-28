@@ -5,6 +5,7 @@ export const validateUser = (req: any, res: express.Response, next: express.Next
 
   token = req.cookies.jwt
 
+
   if (token) {
     const secret: string | undefined = process.env.JWT_PASSWORD
     /* @ts-expect-error */
