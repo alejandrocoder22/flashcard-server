@@ -11,6 +11,16 @@ const getPagination = (page: number): number => {
     return page * 10 - 1
   }
 }
+
+export const getDeckByIdService = async (deckId: number, userId: number) => {
+  return await pool.query(`
+SELECT cards.card_id, cards.question, cards.answer FROM decks 
+INNER JOIN cards
+ON cards.deck_id = decks.deck_id
+WHERE decks.deck_id = $1 AND decks.user_id = $2
+
+  `, [deckId, userId])
+}
 export const getPublicDecksByTopicService = async (pagination: number, topic: string): Promise<any> => {
   console.log(topic, pagination)
   return await pool.query(`
