@@ -1,4 +1,4 @@
-import { createDeckService, deleteDeckService, getDeckById, getPublicDecksByTopicService, getPublicDecksByUserId, updateDeckService } from '../services/decksServices'
+import { createDeckService, deleteDeckService, getDeckById, getDeckByIdService, getPublicDecksByTopicService, getPublicDecksByUserId, updateDeckService } from '../services/decksServices'
 
 export const createDeck = async (req: any, res: any): Promise<void> => {
   const { topic, deckName, isPublic } = req.body
@@ -9,6 +9,22 @@ export const createDeck = async (req: any, res: any): Promise<void> => {
   } catch (error) {
     res.status(400).send({ message: 'Something went wrong', error })
   }
+}
+
+export const getDeckAndCardsById = async (req: any,res: any) => {
+  const {deckId} = req.params
+
+  
+  try {
+    const deck = await getDeckByIdService(deckId, req.user.userId)
+
+
+    res.status(200).send(deck.rows)
+    
+  } catch (error) {
+    res.status(400).send({message: 'Something went wrong', error})
+  }
+
 }
 
 export const getPublicDecksByTopic = async (req: any, res: any): Promise<void> => {
