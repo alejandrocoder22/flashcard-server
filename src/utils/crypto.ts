@@ -20,6 +20,7 @@ export const generateToken = async (userId: number, username: string, res: expre
   res.cookie('jwt', token, {
     httpOnly: true,
     sameSite: 'strict',
+    secure: true,
     maxAge: 30 * 24 * 60 * 60 * 1000
   })
 }
