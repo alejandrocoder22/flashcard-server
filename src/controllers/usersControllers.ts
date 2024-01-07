@@ -5,6 +5,7 @@ import { checkPassword, generateToken, hashPassword } from '../utils/crypto'
 
 export const createUser = async (req: express.Request, res: express.Response): Promise<any> => {
   const { username, email, password } = req.body
+  
   try {
     const user = await userExist(username, email)
     if (user.length > 0) {
