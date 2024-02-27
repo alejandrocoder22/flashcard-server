@@ -22,7 +22,6 @@ WHERE decks.deck_id = $1 AND decks.user_id = $2
   `, [deckId, userId])
 }
 export const getPublicDecksByTopicService = async (pagination: number, topic: string): Promise<any> => {
-  console.log(topic, pagination)
   return await pool.query(`
 SELECT * FROM decks 
 WHERE is_public = true 
